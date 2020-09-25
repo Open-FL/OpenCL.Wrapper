@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using OpenCL.Kernels;
-using OpenCL.Programs;
+using OpenCL.NET;
+using OpenCL.NET.Kernels;
+using OpenCL.NET.Programs;
 using OpenCL.Wrapper.TypeEnums;
 
 using Utility.ExtPP.API;

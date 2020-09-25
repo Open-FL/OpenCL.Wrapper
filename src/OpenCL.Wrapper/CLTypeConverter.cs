@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using OpenCL.DataTypes;
+using OpenCL.NET.DataTypes;
 
 namespace OpenCL.Wrapper
 {

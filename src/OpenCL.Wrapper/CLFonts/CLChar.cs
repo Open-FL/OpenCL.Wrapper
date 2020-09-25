@@ -1,5 +1,5 @@
-﻿using OpenCL.DataTypes;
-using OpenCL.Memory;
+﻿using OpenCL.NET.DataTypes;
+using OpenCL.NET.Memory;
 
 namespace OpenCL.Wrapper.CLFonts
 {

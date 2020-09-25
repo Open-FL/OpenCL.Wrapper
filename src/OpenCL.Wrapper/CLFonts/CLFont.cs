@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-using OpenCL.Memory;
+using OpenCL.NET.Memory;
+
 
 namespace OpenCL.Wrapper.CLFonts
 {

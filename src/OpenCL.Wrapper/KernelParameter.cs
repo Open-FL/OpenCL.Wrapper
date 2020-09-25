@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using OpenCL.DataTypes;
+using OpenCL.NET;
+using OpenCL.NET.DataTypes;
 using OpenCL.Wrapper.TypeEnums;
 
 namespace OpenCL.Wrapper

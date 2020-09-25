@@ -5,14 +5,15 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-using OpenCL.CommandQueues;
-using OpenCL.Contexts;
-using OpenCL.DataTypes;
-using OpenCL.Devices;
-using OpenCL.Kernels;
-using OpenCL.Memory;
-using OpenCL.Platforms;
-using OpenCL.Programs;
+using OpenCL.NET;
+using OpenCL.NET.CommandQueues;
+using OpenCL.NET.Contexts;
+using OpenCL.NET.DataTypes;
+using OpenCL.NET.Devices;
+using OpenCL.NET.Kernels;
+using OpenCL.NET.Memory;
+using OpenCL.NET.Platforms;
+using OpenCL.NET.Programs;
 
 using Utility.ADL;
 

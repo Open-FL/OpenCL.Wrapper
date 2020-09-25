@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\deps\OpenCL\src\OpenCL\OpenCL.csproj" />
+    <ProjectReference Include="..\..\deps\OpenCL\src\OpenCL\OpenCL.NET.csproj" />
     <ProjectReference Include="..\..\deps\Utility\src\Utility\Utility.csproj" />
   </ItemGroup>
 
