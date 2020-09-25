@@ -1,0 +1,8 @@
+[submodule "deps/OpenCL"]
+	path = deps/OpenCL
+	url = https://github.com/Open-FL/OpenCL
+	branch = master
+[submodule "deps/Utility"]
+	path = deps/Utility
+	url = https://github.com/Open-FL/Utility
+	branch = master
