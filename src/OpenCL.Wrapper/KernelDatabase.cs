@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using OpenCL.Wrapper.ExtPP.API;
+using OpenCL.Wrapper.TypeEnums;
 
 using Utility.ADL;
 using Utility.ExtPP.API;
@@ -11,13 +12,13 @@ using Utility.IO.Callbacks;
 namespace OpenCL.Wrapper
 {
     /// <summary>
-    /// A class used to store and manage Kernels
+    ///     A class used to store and manage Kernels
     /// </summary>
     public class KernelDatabase : ALoggable<LogType>, IDisposable
     {
 
         /// <summary>
-        /// The currently loaded kernels
+        ///     The currently loaded kernels
         /// </summary>
         private readonly Dictionary<string, CLKernel> loadedKernels;
 
@@ -30,15 +31,15 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Public constructor
+        ///     Public constructor
         /// </summary>
         /// <param name="instance">CLAPI Instance for the current thread</param>
         /// <param name="folderName">Folder name where the kernels are located</param>
         /// <param name="genDataVectorType">The DataVectorTypes used to compile the FL Database</param>
-        public KernelDatabase(CLAPI instance, string folderName, TypeEnums.DataVectorTypes genDataVectorType) : base(
-                                                                                                                     OpenCLDebugConfig
-                                                                                                                         .Settings
-                                                                                                                    )
+        public KernelDatabase(CLAPI instance, string folderName, DataVectorTypes genDataVectorType) : base(
+                                                                                                           OpenCLDebugConfig
+                                                                                                               .Settings
+                                                                                                          )
         {
             GenDataType = KernelParameter.GetDataString(genDataVectorType);
 
@@ -52,14 +53,14 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Public constructor
+        ///     Public constructor
         /// </summary>
         /// <param name="instance">CLAPI Instance for the current thread</param>
         /// <param name="folderName">Folder name where the kernels are located</param>
         /// <param name="genDataVectorType">The DataVectorTypes used to compile the FL Database</param>
-        public KernelDatabase(TypeEnums.DataVectorTypes genDataVectorType) : base(
-                                                                                  OpenCLDebugConfig.Settings
-                                                                                 )
+        public KernelDatabase(DataVectorTypes genDataVectorType) : base(
+                                                                        OpenCLDebugConfig.Settings
+                                                                       )
         {
             GenDataType = KernelParameter.GetDataString(genDataVectorType);
             loadedPrograms = new List<CLProgram>();
@@ -90,7 +91,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Initializes the Kernel Database
+        ///     Initializes the Kernel Database
         /// </summary>
         public void LoadFolder(CLAPI instance, string folderName)
         {
@@ -203,7 +204,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Manually adds a Program to the database
+        ///     Manually adds a Program to the database
         /// </summary>
         /// <param name="instance">CLAPI Instance for the current thread</param>
         /// <param name="file">Path fo the file</param>
@@ -218,7 +219,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Tries to get the CLKernel by the specified name
+        ///     Tries to get the CLKernel by the specified name
         /// </summary>
         /// <param name="name">The name of the kernel</param>
         /// <param name="kernel">The kernel. Null if not found</param>

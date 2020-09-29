@@ -2,183 +2,179 @@
 using System.Collections.Generic;
 
 using OpenCL.NET.DataTypes;
+using OpenCL.Wrapper.TypeEnums;
 
 namespace OpenCL.Wrapper
 {
     /// <summary>
-    /// Used to magically convert VectorN into VectorN of different type.
-    /// 
+    ///     Used to magically convert VectorN into VectorN of different type.
     /// </summary>
     public static class CLTypeConverter
     {
 
         /// <summary>
-        /// Dictionary containing the ToConverter
-        /// From Array of objects(need to be implicitly converted into to the specifed base type)
+        ///     Dictionary containing the ToConverter
+        ///     From Array of objects(need to be implicitly converted into to the specifed base type)
         /// </summary>
-        private static readonly Dictionary<TypeEnums.DataVectorTypes, ConvertToN> ToConverter =
-            new Dictionary<TypeEnums.DataVectorTypes, ConvertToN>
+        private static readonly Dictionary<DataVectorTypes, ConvertToN> ToConverter =
+            new Dictionary<DataVectorTypes, ConvertToN>
             {
-                { TypeEnums.DataVectorTypes.Uchar2, CreateByte2 },
-                { TypeEnums.DataVectorTypes.Uchar3, CreateByte3 },
-                { TypeEnums.DataVectorTypes.Uchar4, CreateByte4 },
-                { TypeEnums.DataVectorTypes.Uchar8, CreateByte8 },
-                { TypeEnums.DataVectorTypes.Uchar16, CreateByte16 },
-                { TypeEnums.DataVectorTypes.Char2, CreateSByte2 },
-                { TypeEnums.DataVectorTypes.Char3, CreateSByte3 },
-                { TypeEnums.DataVectorTypes.Char4, CreateSByte4 },
-                { TypeEnums.DataVectorTypes.Char8, CreateSByte8 },
-                { TypeEnums.DataVectorTypes.Char16, CreateSByte16 },
-                { TypeEnums.DataVectorTypes.Ulong2, CreateULong2 },
-                { TypeEnums.DataVectorTypes.Ulong3, CreateULong3 },
-                { TypeEnums.DataVectorTypes.Ulong4, CreateULong4 },
-                { TypeEnums.DataVectorTypes.Ulong8, CreateULong8 },
-                { TypeEnums.DataVectorTypes.Ulong16, CreateULong16 },
-                { TypeEnums.DataVectorTypes.Long2, CreateLong2 },
-                { TypeEnums.DataVectorTypes.Long3, CreateLong3 },
-                { TypeEnums.DataVectorTypes.Long4, CreateLong4 },
-                { TypeEnums.DataVectorTypes.Long8, CreateLong8 },
-                { TypeEnums.DataVectorTypes.Long16, CreateLong16 },
-                { TypeEnums.DataVectorTypes.Uint2, CreateUInt2 },
-                { TypeEnums.DataVectorTypes.Uint3, CreateUInt3 },
-                { TypeEnums.DataVectorTypes.Uint4, CreateUInt4 },
-                { TypeEnums.DataVectorTypes.Uint8, CreateUInt8 },
-                { TypeEnums.DataVectorTypes.Uint16, CreateUInt16 },
-                { TypeEnums.DataVectorTypes.Int2, CreateInt2 },
-                { TypeEnums.DataVectorTypes.Int3, CreateInt3 },
-                { TypeEnums.DataVectorTypes.Int4, CreateInt4 },
-                { TypeEnums.DataVectorTypes.Int8, CreateInt8 },
-                { TypeEnums.DataVectorTypes.Int16, CreateInt16 },
-                { TypeEnums.DataVectorTypes.Ushort2, CreateUShort2 },
-                { TypeEnums.DataVectorTypes.Ushort3, CreateUShort3 },
-                { TypeEnums.DataVectorTypes.Ushort4, CreateUShort4 },
-                { TypeEnums.DataVectorTypes.Ushort8, CreateUShort8 },
-                {
-                    TypeEnums.DataVectorTypes.Ushort16, CreateUShort16
-                },
-                { TypeEnums.DataVectorTypes.Short2, CreateShort2 },
-                { TypeEnums.DataVectorTypes.Short3, CreateShort3 },
-                { TypeEnums.DataVectorTypes.Short4, CreateShort4 },
-                { TypeEnums.DataVectorTypes.Short8, CreateShort8 },
-                { TypeEnums.DataVectorTypes.Short16, CreateShort16 },
-                { TypeEnums.DataVectorTypes.Float2, CreateFloat2 },
-                { TypeEnums.DataVectorTypes.Float3, CreateFloat3 },
-                { TypeEnums.DataVectorTypes.Float4, CreateFloat4 },
-                { TypeEnums.DataVectorTypes.Float8, CreateFloat8 },
-                { TypeEnums.DataVectorTypes.Float16, CreateFloat16 }
+                { DataVectorTypes.Uchar2, CreateByte2 },
+                { DataVectorTypes.Uchar3, CreateByte3 },
+                { DataVectorTypes.Uchar4, CreateByte4 },
+                { DataVectorTypes.Uchar8, CreateByte8 },
+                { DataVectorTypes.Uchar16, CreateByte16 },
+                { DataVectorTypes.Char2, CreateSByte2 },
+                { DataVectorTypes.Char3, CreateSByte3 },
+                { DataVectorTypes.Char4, CreateSByte4 },
+                { DataVectorTypes.Char8, CreateSByte8 },
+                { DataVectorTypes.Char16, CreateSByte16 },
+                { DataVectorTypes.Ulong2, CreateULong2 },
+                { DataVectorTypes.Ulong3, CreateULong3 },
+                { DataVectorTypes.Ulong4, CreateULong4 },
+                { DataVectorTypes.Ulong8, CreateULong8 },
+                { DataVectorTypes.Ulong16, CreateULong16 },
+                { DataVectorTypes.Long2, CreateLong2 },
+                { DataVectorTypes.Long3, CreateLong3 },
+                { DataVectorTypes.Long4, CreateLong4 },
+                { DataVectorTypes.Long8, CreateLong8 },
+                { DataVectorTypes.Long16, CreateLong16 },
+                { DataVectorTypes.Uint2, CreateUInt2 },
+                { DataVectorTypes.Uint3, CreateUInt3 },
+                { DataVectorTypes.Uint4, CreateUInt4 },
+                { DataVectorTypes.Uint8, CreateUInt8 },
+                { DataVectorTypes.Uint16, CreateUInt16 },
+                { DataVectorTypes.Int2, CreateInt2 },
+                { DataVectorTypes.Int3, CreateInt3 },
+                { DataVectorTypes.Int4, CreateInt4 },
+                { DataVectorTypes.Int8, CreateInt8 },
+                { DataVectorTypes.Int16, CreateInt16 },
+                { DataVectorTypes.Ushort2, CreateUShort2 },
+                { DataVectorTypes.Ushort3, CreateUShort3 },
+                { DataVectorTypes.Ushort4, CreateUShort4 },
+                { DataVectorTypes.Ushort8, CreateUShort8 },
+                { DataVectorTypes.Ushort16, CreateUShort16 },
+                { DataVectorTypes.Short2, CreateShort2 },
+                { DataVectorTypes.Short3, CreateShort3 },
+                { DataVectorTypes.Short4, CreateShort4 },
+                { DataVectorTypes.Short8, CreateShort8 },
+                { DataVectorTypes.Short16, CreateShort16 },
+                { DataVectorTypes.Float2, CreateFloat2 },
+                { DataVectorTypes.Float3, CreateFloat3 },
+                { DataVectorTypes.Float4, CreateFloat4 },
+                { DataVectorTypes.Float8, CreateFloat8 },
+                { DataVectorTypes.Float16, CreateFloat16 }
             };
 
         /// <summary>
-        /// A dictionary containing the Base types for the different CL typee
+        ///     A dictionary containing the Base types for the different CL typee
         /// </summary>
-        private static readonly Dictionary<TypeEnums.DataVectorTypes, Type> BaseTypes =
-            new Dictionary<TypeEnums.DataVectorTypes, Type>
+        private static readonly Dictionary<DataVectorTypes, Type> BaseTypes =
+            new Dictionary<DataVectorTypes, Type>
             {
-                { TypeEnums.DataVectorTypes.Uchar2, typeof(byte) },
-                { TypeEnums.DataVectorTypes.Uchar3, typeof(byte) },
-                { TypeEnums.DataVectorTypes.Uchar4, typeof(byte) },
-                { TypeEnums.DataVectorTypes.Uchar8, typeof(byte) },
-                { TypeEnums.DataVectorTypes.Uchar16, typeof(byte) },
-                { TypeEnums.DataVectorTypes.Char2, typeof(sbyte) },
-                { TypeEnums.DataVectorTypes.Char3, typeof(sbyte) },
-                { TypeEnums.DataVectorTypes.Char4, typeof(sbyte) },
-                { TypeEnums.DataVectorTypes.Char8, typeof(sbyte) },
-                { TypeEnums.DataVectorTypes.Char16, typeof(sbyte) },
-                { TypeEnums.DataVectorTypes.Ulong2, typeof(ulong) },
-                { TypeEnums.DataVectorTypes.Ulong3, typeof(ulong) },
-                { TypeEnums.DataVectorTypes.Ulong4, typeof(ulong) },
-                { TypeEnums.DataVectorTypes.Ulong8, typeof(ulong) },
-                { TypeEnums.DataVectorTypes.Ulong16, typeof(ulong) },
-                { TypeEnums.DataVectorTypes.Long2, typeof(long) },
-                { TypeEnums.DataVectorTypes.Long3, typeof(long) },
-                { TypeEnums.DataVectorTypes.Long4, typeof(long) },
-                { TypeEnums.DataVectorTypes.Long8, typeof(long) },
-                { TypeEnums.DataVectorTypes.Long16, typeof(long) },
-                { TypeEnums.DataVectorTypes.Uint2, typeof(uint) },
-                { TypeEnums.DataVectorTypes.Uint3, typeof(uint) },
-                { TypeEnums.DataVectorTypes.Uint4, typeof(uint) },
-                { TypeEnums.DataVectorTypes.Uint8, typeof(uint) },
-                { TypeEnums.DataVectorTypes.Uint16, typeof(uint) },
-                { TypeEnums.DataVectorTypes.Int2, typeof(int) },
-                { TypeEnums.DataVectorTypes.Int3, typeof(int) },
-                { TypeEnums.DataVectorTypes.Int4, typeof(int) },
-                { TypeEnums.DataVectorTypes.Int8, typeof(int) },
-                { TypeEnums.DataVectorTypes.Int16, typeof(int) },
-                { TypeEnums.DataVectorTypes.Ushort2, typeof(ushort) },
-                { TypeEnums.DataVectorTypes.Ushort3, typeof(ushort) },
-                { TypeEnums.DataVectorTypes.Ushort4, typeof(short) },
-                { TypeEnums.DataVectorTypes.Ushort8, typeof(ushort) },
-                { TypeEnums.DataVectorTypes.Ushort16, typeof(ushort) },
-                { TypeEnums.DataVectorTypes.Short2, typeof(short) },
-                { TypeEnums.DataVectorTypes.Short3, typeof(short) },
-                { TypeEnums.DataVectorTypes.Short4, typeof(short) },
-                { TypeEnums.DataVectorTypes.Short8, typeof(short) },
-                { TypeEnums.DataVectorTypes.Short16, typeof(short) },
-                { TypeEnums.DataVectorTypes.Float2, typeof(float) },
-                { TypeEnums.DataVectorTypes.Float3, typeof(float) },
-                { TypeEnums.DataVectorTypes.Float4, typeof(float) },
-                { TypeEnums.DataVectorTypes.Float8, typeof(float) },
-                { TypeEnums.DataVectorTypes.Float16, typeof(float) }
+                { DataVectorTypes.Uchar2, typeof(byte) },
+                { DataVectorTypes.Uchar3, typeof(byte) },
+                { DataVectorTypes.Uchar4, typeof(byte) },
+                { DataVectorTypes.Uchar8, typeof(byte) },
+                { DataVectorTypes.Uchar16, typeof(byte) },
+                { DataVectorTypes.Char2, typeof(sbyte) },
+                { DataVectorTypes.Char3, typeof(sbyte) },
+                { DataVectorTypes.Char4, typeof(sbyte) },
+                { DataVectorTypes.Char8, typeof(sbyte) },
+                { DataVectorTypes.Char16, typeof(sbyte) },
+                { DataVectorTypes.Ulong2, typeof(ulong) },
+                { DataVectorTypes.Ulong3, typeof(ulong) },
+                { DataVectorTypes.Ulong4, typeof(ulong) },
+                { DataVectorTypes.Ulong8, typeof(ulong) },
+                { DataVectorTypes.Ulong16, typeof(ulong) },
+                { DataVectorTypes.Long2, typeof(long) },
+                { DataVectorTypes.Long3, typeof(long) },
+                { DataVectorTypes.Long4, typeof(long) },
+                { DataVectorTypes.Long8, typeof(long) },
+                { DataVectorTypes.Long16, typeof(long) },
+                { DataVectorTypes.Uint2, typeof(uint) },
+                { DataVectorTypes.Uint3, typeof(uint) },
+                { DataVectorTypes.Uint4, typeof(uint) },
+                { DataVectorTypes.Uint8, typeof(uint) },
+                { DataVectorTypes.Uint16, typeof(uint) },
+                { DataVectorTypes.Int2, typeof(int) },
+                { DataVectorTypes.Int3, typeof(int) },
+                { DataVectorTypes.Int4, typeof(int) },
+                { DataVectorTypes.Int8, typeof(int) },
+                { DataVectorTypes.Int16, typeof(int) },
+                { DataVectorTypes.Ushort2, typeof(ushort) },
+                { DataVectorTypes.Ushort3, typeof(ushort) },
+                { DataVectorTypes.Ushort4, typeof(short) },
+                { DataVectorTypes.Ushort8, typeof(ushort) },
+                { DataVectorTypes.Ushort16, typeof(ushort) },
+                { DataVectorTypes.Short2, typeof(short) },
+                { DataVectorTypes.Short3, typeof(short) },
+                { DataVectorTypes.Short4, typeof(short) },
+                { DataVectorTypes.Short8, typeof(short) },
+                { DataVectorTypes.Short16, typeof(short) },
+                { DataVectorTypes.Float2, typeof(float) },
+                { DataVectorTypes.Float3, typeof(float) },
+                { DataVectorTypes.Float4, typeof(float) },
+                { DataVectorTypes.Float8, typeof(float) },
+                { DataVectorTypes.Float16, typeof(float) }
             };
 
         /// <summary>
-        /// Dictionary containing the FromConverter
-        /// From the CL Type to an Array of objects
+        ///     Dictionary containing the FromConverter
+        ///     From the CL Type to an Array of objects
         /// </summary>
-        private static readonly Dictionary<TypeEnums.DataVectorTypes, ConvertFromN> FromConverter =
-            new Dictionary<TypeEnums.DataVectorTypes, ConvertFromN>
+        private static readonly Dictionary<DataVectorTypes, ConvertFromN> FromConverter =
+            new Dictionary<DataVectorTypes, ConvertFromN>
             {
-                { TypeEnums.DataVectorTypes.Uchar2, FromByte2 },
-                { TypeEnums.DataVectorTypes.Uchar3, FromByte3 },
-                { TypeEnums.DataVectorTypes.Uchar4, FromByte4 },
-                { TypeEnums.DataVectorTypes.Uchar8, FromByte8 },
-                { TypeEnums.DataVectorTypes.Uchar16, FromByte16 },
-                { TypeEnums.DataVectorTypes.Char2, FromSByte2 },
-                { TypeEnums.DataVectorTypes.Char3, FromSByte3 },
-                { TypeEnums.DataVectorTypes.Char4, FromSByte4 },
-                { TypeEnums.DataVectorTypes.Char8, FromSByte8 },
-                { TypeEnums.DataVectorTypes.Char16, FromSByte16 },
-                { TypeEnums.DataVectorTypes.Ulong2, FromULong2 },
-                { TypeEnums.DataVectorTypes.Ulong3, FromULong3 },
-                { TypeEnums.DataVectorTypes.Ulong4, FromULong4 },
-                { TypeEnums.DataVectorTypes.Ulong8, FromULong8 },
-                { TypeEnums.DataVectorTypes.Ulong16, FromULong16 },
-                { TypeEnums.DataVectorTypes.Long2, FromLong2 },
-                { TypeEnums.DataVectorTypes.Long3, FromLong3 },
-                { TypeEnums.DataVectorTypes.Long4, FromLong4 },
-                { TypeEnums.DataVectorTypes.Long8, FromLong8 },
-                { TypeEnums.DataVectorTypes.Long16, FromLong16 },
-                { TypeEnums.DataVectorTypes.Uint2, FromUInt2 },
-                { TypeEnums.DataVectorTypes.Uint3, FromUInt3 },
-                { TypeEnums.DataVectorTypes.Uint4, FromUInt4 },
-                { TypeEnums.DataVectorTypes.Uint8, FromUInt8 },
-                { TypeEnums.DataVectorTypes.Uint16, FromUInt16 },
-                { TypeEnums.DataVectorTypes.Int2, FromInt2 },
-                { TypeEnums.DataVectorTypes.Int3, FromInt3 },
-                { TypeEnums.DataVectorTypes.Int4, FromInt4 },
-                { TypeEnums.DataVectorTypes.Int8, FromInt8 },
-                { TypeEnums.DataVectorTypes.Int16, FromInt16 },
-                { TypeEnums.DataVectorTypes.Ushort2, FromUShort2 },
-                { TypeEnums.DataVectorTypes.Ushort3, FromUShort3 },
-                { TypeEnums.DataVectorTypes.Ushort4, FromUShort4 },
-                { TypeEnums.DataVectorTypes.Ushort8, FromUShort8 },
-                {
-                    TypeEnums.DataVectorTypes.Ushort16, FromUShort16
-                },
-                { TypeEnums.DataVectorTypes.Short2, Fromshort2 },
-                { TypeEnums.DataVectorTypes.Short3, Fromshort3 },
-                { TypeEnums.DataVectorTypes.Short4, Fromshort4 },
-                { TypeEnums.DataVectorTypes.Short8, Fromshort8 },
-                { TypeEnums.DataVectorTypes.Short16, Fromshort16 },
-                { TypeEnums.DataVectorTypes.Float2, FromFloat2 },
-                { TypeEnums.DataVectorTypes.Float3, FromFloat3 },
-                { TypeEnums.DataVectorTypes.Float4, FromFloat4 },
-                { TypeEnums.DataVectorTypes.Float8, FromFloat8 },
-                { TypeEnums.DataVectorTypes.Float16, FromFloat16 }
+                { DataVectorTypes.Uchar2, FromByte2 },
+                { DataVectorTypes.Uchar3, FromByte3 },
+                { DataVectorTypes.Uchar4, FromByte4 },
+                { DataVectorTypes.Uchar8, FromByte8 },
+                { DataVectorTypes.Uchar16, FromByte16 },
+                { DataVectorTypes.Char2, FromSByte2 },
+                { DataVectorTypes.Char3, FromSByte3 },
+                { DataVectorTypes.Char4, FromSByte4 },
+                { DataVectorTypes.Char8, FromSByte8 },
+                { DataVectorTypes.Char16, FromSByte16 },
+                { DataVectorTypes.Ulong2, FromULong2 },
+                { DataVectorTypes.Ulong3, FromULong3 },
+                { DataVectorTypes.Ulong4, FromULong4 },
+                { DataVectorTypes.Ulong8, FromULong8 },
+                { DataVectorTypes.Ulong16, FromULong16 },
+                { DataVectorTypes.Long2, FromLong2 },
+                { DataVectorTypes.Long3, FromLong3 },
+                { DataVectorTypes.Long4, FromLong4 },
+                { DataVectorTypes.Long8, FromLong8 },
+                { DataVectorTypes.Long16, FromLong16 },
+                { DataVectorTypes.Uint2, FromUInt2 },
+                { DataVectorTypes.Uint3, FromUInt3 },
+                { DataVectorTypes.Uint4, FromUInt4 },
+                { DataVectorTypes.Uint8, FromUInt8 },
+                { DataVectorTypes.Uint16, FromUInt16 },
+                { DataVectorTypes.Int2, FromInt2 },
+                { DataVectorTypes.Int3, FromInt3 },
+                { DataVectorTypes.Int4, FromInt4 },
+                { DataVectorTypes.Int8, FromInt8 },
+                { DataVectorTypes.Int16, FromInt16 },
+                { DataVectorTypes.Ushort2, FromUShort2 },
+                { DataVectorTypes.Ushort3, FromUShort3 },
+                { DataVectorTypes.Ushort4, FromUShort4 },
+                { DataVectorTypes.Ushort8, FromUShort8 },
+                { DataVectorTypes.Ushort16, FromUShort16 },
+                { DataVectorTypes.Short2, Fromshort2 },
+                { DataVectorTypes.Short3, Fromshort3 },
+                { DataVectorTypes.Short4, Fromshort4 },
+                { DataVectorTypes.Short8, Fromshort8 },
+                { DataVectorTypes.Short16, Fromshort16 },
+                { DataVectorTypes.Float2, FromFloat2 },
+                { DataVectorTypes.Float3, FromFloat3 },
+                { DataVectorTypes.Float4, FromFloat4 },
+                { DataVectorTypes.Float8, FromFloat8 },
+                { DataVectorTypes.Float16, FromFloat16 }
             };
 
         /// <summary>
-        /// Converts the Range of a number to a different one
+        ///     Converts the Range of a number to a different one
         /// </summary>
         /// <param name="value">The Value to be changed</param>
         /// <param name="oldMax">The old maximum range</param>
@@ -191,15 +187,16 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Converts the Specified value(that also needs to be a CL struct e.g. uchar4 to float4 is valid) into another CL struct
+        ///     Converts the Specified value(that also needs to be a CL struct e.g. uchar4 to float4 is valid) into another CL
+        ///     struct
         /// </summary>
         /// <param name="newType">The new type of the Value</param>
         /// <param name="value">The value</param>
         /// <returns>The value as the new Type</returns>
         public static object Convert(Type newType, object value)
         {
-            TypeEnums.DataVectorTypes olddt = KernelParameter.GetEnumFromType(value.GetType());
-            TypeEnums.DataVectorTypes dt = KernelParameter.GetEnumFromType(newType);
+            DataVectorTypes olddt = KernelParameter.GetEnumFromType(value.GetType());
+            DataVectorTypes dt = KernelParameter.GetEnumFromType(newType);
 
             string oldName = KernelParameter.GetDataString(olddt);
             string newName = KernelParameter.GetDataString(dt);
@@ -241,14 +238,14 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Delegate used to Create the ToConverter
+        ///     Delegate used to Create the ToConverter
         /// </summary>
         /// <param name="args">The Numers</param>
         /// <returns>a CL type</returns>
         private delegate object ConvertToN(object[] args);
 
         /// <summary>
-        /// Delegate used to Create the FromConverter
+        ///     Delegate used to Create the FromConverter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>An array of numbers resembling the components of the CL Type</returns>
@@ -258,7 +255,7 @@ namespace OpenCL.Wrapper
         #region Float
 
         /// <summary>
-        /// FromFloat 16 Converter
+        ///     FromFloat 16 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -276,7 +273,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromFloat 8 Converter
+        ///     FromFloat 8 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -294,7 +291,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromFloat 4 Converter
+        ///     FromFloat 4 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -312,7 +309,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromFloat 3 Converter
+        ///     FromFloat 3 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -330,7 +327,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromFloat 2 Converter
+        ///     FromFloat 2 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -349,7 +346,7 @@ namespace OpenCL.Wrapper
 
 
         /// <summary>
-        /// ToFloat 16 Converter
+        ///     ToFloat 16 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -377,7 +374,7 @@ namespace OpenCL.Wrapper
 
 
         /// <summary>
-        /// ToFloat 8 Converter
+        ///     ToFloat 8 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -396,7 +393,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToFloat 4 Converter
+        ///     ToFloat 4 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -406,7 +403,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToFloat 3 Converter
+        ///     ToFloat 3 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -416,7 +413,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToFloat 2 Converter
+        ///     ToFloat 2 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -430,7 +427,7 @@ namespace OpenCL.Wrapper
         #region Byte
 
         /// <summary>
-        /// FromByte 16 Converter
+        ///     FromByte 16 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -448,7 +445,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromByte 8 Converter
+        ///     FromByte 8 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -466,7 +463,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromByte 4 Converter
+        ///     FromByte 4 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -484,7 +481,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromByte 3 Converter
+        ///     FromByte 3 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -502,7 +499,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromByte 2 Converter
+        ///     FromByte 2 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -520,7 +517,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToByte 16 Converter
+        ///     ToByte 16 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -547,7 +544,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToByte 8 Converter
+        ///     ToByte 8 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -566,7 +563,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToByte 4 Converter
+        ///     ToByte 4 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -576,7 +573,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToByte 3 Converter
+        ///     ToByte 3 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -586,7 +583,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToByte 2 Converter
+        ///     ToByte 2 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -600,7 +597,7 @@ namespace OpenCL.Wrapper
         #region SByte
 
         /// <summary>
-        /// FromSByte 16 Converter
+        ///     FromSByte 16 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -618,7 +615,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromSByte 8 Converter
+        ///     FromSByte 8 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -636,7 +633,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromSByte 4 Converter
+        ///     FromSByte 4 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -654,7 +651,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromSByte 3 Converter
+        ///     FromSByte 3 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -672,7 +669,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromSByte 2 Converter
+        ///     FromSByte 2 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -691,7 +688,7 @@ namespace OpenCL.Wrapper
 
 
         /// <summary>
-        /// ToSbyte 16 Converter
+        ///     ToSbyte 16 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -718,7 +715,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToSbyte 8 Converter
+        ///     ToSbyte 8 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -737,7 +734,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToSbyte 4 Converter
+        ///     ToSbyte 4 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -747,7 +744,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToSbyte 3 Converter
+        ///     ToSbyte 3 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -757,7 +754,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToSbyte 2 Converter
+        ///     ToSbyte 2 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -771,7 +768,7 @@ namespace OpenCL.Wrapper
         #region Long
 
         /// <summary>
-        /// FromLong 16 Converter
+        ///     FromLong 16 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -789,7 +786,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromLong 8 Converter
+        ///     FromLong 8 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -807,7 +804,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromLong 4 Converter
+        ///     FromLong 4 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -825,7 +822,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromLong 3 Converter
+        ///     FromLong 3 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -843,7 +840,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromLong 2 Converter
+        ///     FromLong 2 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -861,7 +858,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToLong 16 Converter
+        ///     ToLong 16 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -888,7 +885,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToLong 8 Converter
+        ///     ToLong 8 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -907,7 +904,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToLong 4 Converter
+        ///     ToLong 4 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -917,7 +914,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToLong 3 Converter
+        ///     ToLong 3 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -927,7 +924,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToLong 2 Converter
+        ///     ToLong 2 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -941,7 +938,7 @@ namespace OpenCL.Wrapper
         #region ULong
 
         /// <summary>
-        /// FromULong 16 Converter
+        ///     FromULong 16 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -959,7 +956,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromULong 8 Converter
+        ///     FromULong 8 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -977,7 +974,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromULong 4 Converter
+        ///     FromULong 4 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -995,7 +992,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromULong 3 Converter
+        ///     FromULong 3 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1013,7 +1010,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromULong 2 Converter
+        ///     FromULong 2 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1031,7 +1028,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToULong 16 Converter
+        ///     ToULong 16 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1058,7 +1055,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToULong 8 Converter
+        ///     ToULong 8 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1077,7 +1074,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToULong 4 Converter
+        ///     ToULong 4 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1087,7 +1084,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToULong 3 Converter
+        ///     ToULong 3 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1097,7 +1094,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToULong 2 Converter
+        ///     ToULong 2 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1111,7 +1108,7 @@ namespace OpenCL.Wrapper
         #region Int
 
         /// <summary>
-        /// FromInt 16 Converter
+        ///     FromInt 16 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1129,7 +1126,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromInt 8 Converter
+        ///     FromInt 8 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1147,7 +1144,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromInt 4 Converter
+        ///     FromInt 4 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1165,7 +1162,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromInt 3 Converter
+        ///     FromInt 3 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1183,7 +1180,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromInt 2 Converter
+        ///     FromInt 2 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1201,7 +1198,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToInt 16 Converter
+        ///     ToInt 16 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1228,7 +1225,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToInt 8 Converter
+        ///     ToInt 8 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1247,7 +1244,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToInt 4 Converter
+        ///     ToInt 4 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1257,7 +1254,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToInt 3 Converter
+        ///     ToInt 3 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1267,7 +1264,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToInt 2 Converter
+        ///     ToInt 2 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1281,7 +1278,7 @@ namespace OpenCL.Wrapper
         #region UInt
 
         /// <summary>
-        /// FromUInt 16 Converter
+        ///     FromUInt 16 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1299,7 +1296,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromUInt 8 Converter
+        ///     FromUInt 8 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1317,7 +1314,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromUInt 4 Converter
+        ///     FromUInt 4 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1335,7 +1332,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromUInt 3 Converter
+        ///     FromUInt 3 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1353,7 +1350,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromUInt 2 Converter
+        ///     FromUInt 2 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1371,7 +1368,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUInt 16 Converter
+        ///     ToUInt 16 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1398,7 +1395,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUInt 8 Converter
+        ///     ToUInt 8 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1417,7 +1414,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUInt 4 Converter
+        ///     ToUInt 4 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1427,7 +1424,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUInt 3 Converter
+        ///     ToUInt 3 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1437,7 +1434,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUInt 2 Converter
+        ///     ToUInt 2 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1451,7 +1448,7 @@ namespace OpenCL.Wrapper
         #region Short
 
         /// <summary>
-        /// FromShort 16 Converter
+        ///     FromShort 16 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1469,7 +1466,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromShort 8 Converter
+        ///     FromShort 8 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1487,7 +1484,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromShort 4 Converter
+        ///     FromShort 4 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1505,7 +1502,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromShort 3 Converter
+        ///     FromShort 3 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1523,7 +1520,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromShort 2 Converter
+        ///     FromShort 2 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1541,7 +1538,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToShort 16 Converter
+        ///     ToShort 16 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1568,7 +1565,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToShort 8 Converter
+        ///     ToShort 8 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1587,7 +1584,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToShort 4 Converter
+        ///     ToShort 4 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1597,7 +1594,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToShort 3 Converter
+        ///     ToShort 3 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1607,7 +1604,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToShort 2 Converter
+        ///     ToShort 2 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1621,7 +1618,7 @@ namespace OpenCL.Wrapper
         #region UShort
 
         /// <summary>
-        /// FromShort 16 Converter
+        ///     FromShort 16 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1639,7 +1636,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromShort 8 Converter
+        ///     FromShort 8 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1657,7 +1654,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromShort 4 Converter
+        ///     FromShort 4 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1675,7 +1672,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromShort 3 Converter
+        ///     FromShort 3 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1693,7 +1690,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// FromShort 2 Converter
+        ///     FromShort 2 Converter
         /// </summary>
         /// <param name="value">The Value to be converted</param>
         /// <returns>The components as array</returns>
@@ -1711,7 +1708,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUShort 16 Converter
+        ///     ToUShort 16 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1738,7 +1735,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUShort 8 Converter
+        ///     ToUShort 8 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1757,7 +1754,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUShort 4 Converter
+        ///     ToUShort 4 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1767,7 +1764,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUShort 3 Converter
+        ///     ToUShort 3 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>
@@ -1777,7 +1774,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// ToUShort 2 Converter
+        ///     ToUShort 2 Converter
         /// </summary>
         /// <param name="args">The Numbers to be converted</param>
         /// <returns>The CL Type</returns>

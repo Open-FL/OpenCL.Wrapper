@@ -5,13 +5,13 @@ using Utility.Exceptions;
 namespace OpenCL.Wrapper.Exceptions
 {
     /// <summary>
-    /// This Exception occurs when the CL Implementation is not able to compile a CLProgram
+    ///     This Exception occurs when the CL Implementation is not able to compile a CLProgram
     /// </summary>
     public class CLProgramException : Byt3Exception
     {
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="errorMessage">The message why this exception occurred</param>
         /// <param name="inner">Inner exeption</param>
@@ -20,7 +20,7 @@ namespace OpenCL.Wrapper.Exceptions
         }
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="errorMessage">The message why this exception occurred</param>
         public CLProgramException(string errorMessage) : base(errorMessage)

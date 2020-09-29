@@ -8,7 +8,7 @@ using Utility.ExtPP.Plugins;
 namespace OpenCL.Wrapper.ExtPP.API
 {
     /// <summary>
-    /// The PreProcessor Configuration used for OpenGL and OpenCL files
+    ///     The PreProcessor Configuration used for OpenGL and OpenCL files
     /// </summary>
     public class CLPreProcessorConfig : APreProcessorConfig
     {

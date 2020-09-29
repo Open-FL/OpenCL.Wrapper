@@ -8,16 +8,16 @@ using OpenCL.Wrapper.TypeEnums;
 namespace OpenCL.Wrapper
 {
     /// <summary>
-    /// A class containing the logic to parse a kernel argument
+    ///     A class containing the logic to parse a kernel argument
     /// </summary>
     public class KernelParameter
     {
 
         /// <summary>
-        /// A List of Data type pairs.
-        /// Item 1: C 99 compilant keyword for the type
-        /// Item 2: The maximum value of the data type
-        /// Item 3: The Enum Representation of the Type
+        ///     A List of Data type pairs.
+        ///     Item 1: C 99 compilant keyword for the type
+        ///     Item 2: The maximum value of the data type
+        ///     Item 3: The Enum Representation of the Type
         /// </summary>
         private static readonly List<Tuple<string, float, DataVectorTypes>> DataTypePairs =
             new List<Tuple<string, float, DataVectorTypes>>
@@ -83,32 +83,32 @@ namespace OpenCL.Wrapper
             };
 
         /// <summary>
-        /// The name of the argument
+        ///     The name of the argument
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// The Data type
+        ///     The Data type
         /// </summary>
         public DataVectorTypes DataType { get; set; }
 
         /// <summary>
-        /// Is the Argument an Array?
+        ///     Is the Argument an Array?
         /// </summary>
         public bool IsArray { get; set; }
 
         /// <summary>
-        /// The Argument id of the Parameter
+        ///     The Argument id of the Parameter
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// The scope of the argument
+        ///     The scope of the argument
         /// </summary>
         public MemoryScope MemScope { get; set; }
 
         /// <summary>
-        /// A list of Types(in the same order as the DataType enum
+        ///     A list of Types(in the same order as the DataType enum
         /// </summary>
         internal static Type[] Converters =>
             new[]
@@ -171,7 +171,7 @@ namespace OpenCL.Wrapper
             };
 
         /// <summary>
-        /// Casts the supplied value to the specified type
+        ///     Casts the supplied value to the specified type
         /// </summary>
         /// <param name="instance">CLAPI Instance for the current thread</param>
         /// <param name="value">the value casted to the required type for the parameter</param>
@@ -188,7 +188,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Returns the Data type enum from the C# type
+        ///     Returns the Data type enum from the C# type
         /// </summary>
         /// <param name="t">The type</param>
         /// <returns>The Data type or UNKNOWN if not found</returns>
@@ -206,7 +206,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Casts the supplied value to type t
+        ///     Casts the supplied value to type t
         /// </summary>
         /// <param name="t">the target type</param>
         /// <param name="value">the value to be casted</param>
@@ -223,7 +223,7 @@ namespace OpenCL.Wrapper
 
 
         /// <summary>
-        /// Parses the kernel parameters from the kernel signature
+        ///     Parses the kernel parameters from the kernel signature
         /// </summary>
         /// <param name="code">The full program code</param>
         /// <param name="startIndex">The index where the kernel name starts</param>
@@ -257,7 +257,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// returns the Correct DataType string for the equivalent in the CL Library
+        ///     returns the Correct DataType string for the equivalent in the CL Library
         /// </summary>
         /// <param name="type"></param>
         /// <returns>The keyword for OpenCL as string</returns>
@@ -276,7 +276,7 @@ namespace OpenCL.Wrapper
 
 
         /// <summary>
-        /// returns the Correct DataType max value for the equivalent in the CL Library
+        ///     returns the Correct DataType max value for the equivalent in the CL Library
         /// </summary>
         /// <param name="genType">the cl type that is used</param>
         /// <returns>max value of the data type</returns>
@@ -294,7 +294,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// returns the Correct DataType enum for the equivalent in OpenCL C99
+        ///     returns the Correct DataType enum for the equivalent in OpenCL C99
         /// </summary>
         /// <param name="str">String Representation of the CL Type</param>
         /// <returns>The data type</returns>
@@ -312,7 +312,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Returns the memory scope that is associated with the modifier
+        ///     Returns the memory scope that is associated with the modifier
         /// </summary>
         /// <param name="modifier">The modifier to be tested</param>
         /// <returns>the MemoryScope</returns>

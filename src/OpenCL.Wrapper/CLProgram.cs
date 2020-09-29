@@ -12,13 +12,13 @@ using Utility.ExtPP.API;
 namespace OpenCL.Wrapper
 {
     /// <summary>
-    /// A wrapper class for a OpenCL Program.
+    ///     A wrapper class for a OpenCL Program.
     /// </summary>
     public class CLProgram
     {
 
         /// <summary>
-        /// The filepath of the program source
+        ///     The filepath of the program source
         /// </summary>
         private readonly string filePath;
 
@@ -51,12 +51,12 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// The kernels that are contained in the Program
+        ///     The kernels that are contained in the Program
         /// </summary>
         public Dictionary<string, CLKernel> ContainedKernels { get; }
 
         /// <summary>
-        /// The Compiled OpenCL Program
+        ///     The Compiled OpenCL Program
         /// </summary>
         public Program ClProgramHandle { get; set; }
 
@@ -70,7 +70,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Returns the N of the VectorN types
+        ///     Returns the N of the VectorN types
         /// </summary>
         /// <param name="dtStr">the cl type in use</param>
         /// <returns>the amount of dimensions in the vector type</returns>
@@ -244,7 +244,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Extracts the kernel names from the program source
+        ///     Extracts the kernel names from the program source
         /// </summary>
         /// <param name="source">The complete source of the program</param>
         /// <returns>A list of kernel names</returns>

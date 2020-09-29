@@ -10,7 +10,7 @@ using OpenCL.NET.Memory;
 namespace OpenCL.Wrapper
 {
     /// <summary>
-    /// A wrapper class that holds a OpenCL kernel and the parsed informations for the kernel.
+    ///     A wrapper class that holds a OpenCL kernel and the parsed informations for the kernel.
     /// </summary>
     public class CLKernel : IDisposable
     {
@@ -18,7 +18,7 @@ namespace OpenCL.Wrapper
         private readonly CLAPI instance;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="instance">CLAPI Instance for the current thread</param>
         /// <param name="k">The Compiled and Linked Kernel</param>
@@ -42,17 +42,17 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Dictionary containing the Parsed Kernel Parameters Indexed by their name
+        ///     Dictionary containing the Parsed Kernel Parameters Indexed by their name
         /// </summary>
         public Dictionary<string, KernelParameter> Parameter { get; }
 
         /// <summary>
-        /// The Compiled and Linked OpenCL Kernel
+        ///     The Compiled and Linked OpenCL Kernel
         /// </summary>
         private Kernel Kernel { get; }
 
         /// <summary>
-        /// The name of the CLKernel
+        ///     The name of the CLKernel
         /// </summary>
         public string Name { get; }
 
@@ -62,7 +62,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Sets the buffer as argument.
+        ///     Sets the buffer as argument.
         /// </summary>
         /// <param name="parameterName">The name of the parameter</param>
         /// <param name="obj">The buffer to be set</param>
@@ -72,7 +72,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Sets the value as argument
+        ///     Sets the value as argument
         /// </summary>
         /// <param name="parameterName">The name of the parameter</param>
         /// <param name="value">The value to be set</param>
@@ -82,7 +82,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Sets the buffer as argument
+        ///     Sets the buffer as argument
         /// </summary>
         /// <param name="index">The index of the argument</param>
         /// <param name="obj">The buffer to be set</param>
@@ -92,7 +92,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Sets the value as argument
+        ///     Sets the value as argument
         /// </summary>
         /// <param name="index">The index of the argument</param>
         /// <param name="value">The value to be set</param>
@@ -110,7 +110,7 @@ namespace OpenCL.Wrapper
         }
 
         /// <summary>
-        /// Runs the FL Compliant kernel
+        ///     Runs the FL Compliant kernel
         /// </summary>
         /// <param name="cq">Command Queue to be used</param>
         /// <param name="image">The image buffer</param>
@@ -135,8 +135,8 @@ namespace OpenCL.Wrapper
 
 
         /// <summary>
-        /// runs the Kernel with a command queue
-        /// This function requires setting ALL parameters manually
+        ///     runs the Kernel with a command queue
+        ///     This function requires setting ALL parameters manually
         /// </summary>
         /// <param name="cq">Command Queue to use</param>
         /// <param name="workdim">The working dimension(usually 1)</param>

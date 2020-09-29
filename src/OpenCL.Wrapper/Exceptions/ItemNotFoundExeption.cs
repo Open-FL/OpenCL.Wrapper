@@ -5,13 +5,13 @@ using Utility.Exceptions;
 namespace OpenCL.Wrapper.Exceptions
 {
     /// <summary>
-    /// Occurs when a file is not found.
+    ///     Occurs when a file is not found.
     /// </summary>
     public class ItemNotFoundExeption : Byt3Exception
     {
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="itemType">Type of the Item that has not been found</param>
         /// <param name="desc">Description what caused the crash</param>
@@ -24,7 +24,7 @@ namespace OpenCL.Wrapper.Exceptions
         }
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         /// <param name="itemType">Type of the Item that has not been found</param>
         /// <param name="desc">Description what caused the crash</param>

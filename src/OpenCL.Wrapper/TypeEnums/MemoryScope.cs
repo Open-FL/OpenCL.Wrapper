@@ -1,7 +1,7 @@
 ﻿namespace OpenCL.Wrapper.TypeEnums
 {
     /// <summary>
-    /// The Memory scope that kernel arguments can have
+    ///     The Memory scope that kernel arguments can have
     /// </summary>
     public enum MemoryScope
     {

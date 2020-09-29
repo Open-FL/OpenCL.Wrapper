@@ -20,13 +20,13 @@ using Utility.ADL;
 namespace OpenCL.Wrapper
 {
     /// <summary>
-    /// A wrapper class that is handling all the CL operations.
+    ///     A wrapper class that is handling all the CL operations.
     /// </summary>
     public class CLAPI : ALoggable<LogType>, IDisposable
     {
 
         /// <summary>
-        /// A Delegate to create random numbers for every data type
+        ///     A Delegate to create random numbers for every data type
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns> a random value of type T</returns>
@@ -43,24 +43,24 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         private static readonly Dictionary<CLAPI, CLKernel> CopyKernels = new Dictionary<CLAPI, CLKernel>();
 
         /// <summary>
-        /// Field that holds the instance of the CL wrapper
+        ///     Field that holds the instance of the CL wrapper
         /// </summary>
         private static CLAPI Instance;
 
         /// <summary>
-        /// The Command queue that the wrapper is using
+        ///     The Command queue that the wrapper is using
         /// </summary>
         private CommandQueue commandQueue;
 
         /// <summary>
-        /// The CL Context that the wrapper is using
+        ///     The CL Context that the wrapper is using
         /// </summary>
         private Context context;
 
         public bool IsDisposed;
 
         /// <summary>
-        /// Private constructor
+        ///     Private constructor
         /// </summary>
         private CLAPI() : base(OpenCLDebugConfig.Settings)
         {
@@ -68,7 +68,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Helpful property for initializing the singleton
+        ///     Helpful property for initializing the singleton
         /// </summary>
         public static CLAPI MainThread => Instance ?? (Instance = new CLAPI());
 
@@ -88,7 +88,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Returns the Command queue(dont use, its just for debugging if something is wrong)
+        ///     Returns the Command queue(dont use, its just for debugging if something is wrong)
         /// </summary>
         /// <returns>The Internal Command queue</returns>
         internal static CommandQueue GetQueue(CLAPI instance)
@@ -102,8 +102,8 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Reinitializes the CL API
-        /// Used by The unit tests when requireing actual CL api calls(e.g. not in NO_CL mode)
+        ///     Reinitializes the CL API
+        ///     Used by The unit tests when requireing actual CL api calls(e.g. not in NO_CL mode)
         /// </summary>
         public static void Reinitialize()
         {
@@ -112,7 +112,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
 
 
         /// <summary>
-        /// Initializes the OpenCL API
+        ///     Initializes the OpenCL API
         /// </summary>
         private void InitializeOpenCl()
         {
@@ -168,7 +168,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
 
 
         /// <summary>
-        /// Creates a CL Kernel from name
+        ///     Creates a CL Kernel from name
         /// </summary>
         /// <param name="program">The program that contains the kernel</param>
         /// <param name="name">The name of the kernel</param>
@@ -184,7 +184,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Creates an array with random values
+        ///     Creates an array with random values
         /// </summary>
         /// <typeparam name="T">Type of the values</typeparam>
         /// <param name="size">the size of the array</param>
@@ -201,7 +201,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Creates an array with random values
+        ///     Creates an array with random values
         /// </summary>
         /// <typeparam name="T">Type of the values</typeparam>
         /// <param name="size">the size of the array</param>
@@ -243,7 +243,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Writes random values to an array
+        ///     Writes random values to an array
         /// </summary>
         /// <typeparam name="T">Type of the values</typeparam>
         /// <param name="buffer">Array containing the values to overwrite</param>
@@ -271,7 +271,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Writes random values to an array
+        ///     Writes random values to an array
         /// </summary>
         /// <typeparam name="T">Type of the values</typeparam>
         /// <param name="buffer">Array containing the values to overwrite</param>
@@ -283,7 +283,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Writes random values to a MemoryBuffer
+        ///     Writes random values to a MemoryBuffer
         /// </summary>
         /// <typeparam name="T">Type of the values</typeparam>
         /// <param name="instance">CLAPI Instance for the current thread</param>
@@ -307,7 +307,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Writes random values to a Memory Buffer
+        ///     Writes random values to a Memory Buffer
         /// </summary>
         /// <typeparam name="T">Type of the values</typeparam>
         /// <param name="instance">CLAPI Instance for the current thread</param>
@@ -322,7 +322,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
 
 
         /// <summary>
-        /// Writes values to a MemoryBuffer
+        ///     Writes values to a MemoryBuffer
         /// </summary>
         /// <typeparam name="T">Type of the values</typeparam>
         /// <param name="instance">CLAPI Instance for the current thread</param>
@@ -334,7 +334,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Writes values to a MemoryBuffer
+        ///     Writes values to a MemoryBuffer
         /// </summary>
         /// <typeparam name="T">Type of the values</typeparam>
         /// <param name="instance">CLAPI Instance for the current thread</param>
@@ -347,7 +347,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Runs a kernel with a valid FL kernel signature
+        ///     Runs a kernel with a valid FL kernel signature
         /// </summary>
         /// <param name="instance">CLAPI Instance for the current thread</param>
         /// <param name="kernel">The CLKernel to be executed</param>
@@ -395,7 +395,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Creates an empty buffer of type T with the specified size and MemoryFlags
+        ///     Creates an empty buffer of type T with the specified size and MemoryFlags
         /// </summary>
         /// <typeparam name="T">The type of the struct</typeparam>
         /// <param name="instance">CLAPI Instance for the current thread</param>
@@ -409,7 +409,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Creates a Buffer with the specified content and Memory Flags
+        ///     Creates a Buffer with the specified content and Memory Flags
         /// </summary>
         /// <typeparam name="T">Type of the struct</typeparam>
         /// <param name="instance">CLAPI Instance for the current thread</param>
@@ -449,7 +449,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         }
 
         /// <summary>
-        /// Creates a buffer with the content of an image and the specified Memory Flags
+        ///     Creates a buffer with the content of an image and the specified Memory Flags
         /// </summary>
         /// <param name="instance">CLAPI Instance for the current thread</param>
         /// <param name="bmp">The image that holds the data</param>
