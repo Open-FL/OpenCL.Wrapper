@@ -142,7 +142,7 @@ namespace OpenCL.Wrapper
                 try
                 {
                     Kernel k = CLAPI.CreateKernelFromName(prgHandle, kernelName);
-                    int kernelNameIndex = source.IndexOf(" " + kernelName + " ", StringComparison.InvariantCulture);
+                    int kernelNameIndex = source.IndexOf(" " + kernelName + " (", StringComparison.InvariantCulture);
                     kernelNameIndex = kernelNameIndex == -1
                                           ? source.IndexOf(" " + kernelName + "(", StringComparison.InvariantCulture)
                                           : kernelNameIndex;
