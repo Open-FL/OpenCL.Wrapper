@@ -234,7 +234,8 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
                                              instance,
                                              (int)input.Size,
                                              input.Flags,
-                                             "CopyOf:" + input
+                                             "CopyOf:" + input,
+                                             true
                                             );
             k.SetBuffer(0, mb);
             k.SetBuffer(1, input);
