@@ -8,9 +8,8 @@ namespace OpenCL.Wrapper
 
         public static readonly ProjectDebugConfig<LogType, Verbosity> Settings =
             new ProjectDebugConfig<LogType, Verbosity>(
-                                                       "OpenCL",
+                                                       "CL",
                                                        LogType.All,
-                                                       Verbosity.Level1,
                                                        PrefixLookupSettings.AddPrefixIfAvailable |
                                                        PrefixLookupSettings.OnlyOnePrefix
                                                       );
