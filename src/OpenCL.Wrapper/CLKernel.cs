@@ -31,10 +31,10 @@ namespace OpenCL.Wrapper
             Name = name;
             Parameter = new Dictionary<string, KernelParameter>();
             IEnumerable<KeyValuePair<string, KernelParameter>> l = parameter.Select(
-                                                                                    x =>
-                                                                                        new KeyValuePair<string,
-                                                                                            KernelParameter>(x.Name, x)
-                                                                                   );
+                 x =>
+                     new KeyValuePair<string,
+                         KernelParameter>(x.Name, x)
+                );
             foreach (KeyValuePair<string, KernelParameter> keyValuePair in l)
             {
                 Parameter.Add(keyValuePair.Key, keyValuePair.Value);

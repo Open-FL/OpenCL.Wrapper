@@ -147,26 +147,26 @@ namespace OpenCL.Wrapper
                                           ? source.IndexOf(" " + kernelName + "(", StringComparison.InvariantCulture)
                                           : kernelNameIndex;
                     KernelParameter[] parameter = KernelParameter.CreateKernelParametersFromKernelCode(
-                                                                                                       source,
-                                                                                                       kernelNameIndex,
-                                                                                                       source.Substring(
-                                                                                                                        kernelNameIndex,
-                                                                                                                        source
-                                                                                                                            .Length -
-                                                                                                                        kernelNameIndex
-                                                                                                                       ).IndexOf(
-                                                                                                                                 ')'
-                                                                                                                                ) +
-                                                                                                       1
-                                                                                                      );
+                         source,
+                         kernelNameIndex,
+                         source.Substring(
+                                          kernelNameIndex,
+                                          source
+                                              .Length -
+                                          kernelNameIndex
+                                         ).IndexOf(
+                                                   ')'
+                                                  ) +
+                         1
+                        );
                     if (k == null)
                     {
                         result.BuildErrors.Add(
                                                new CLProgramBuildError(
                                                                        ErrorType.KernelBuild,
                                                                        new OpenClException(
-                                                                                           $"Header parser completed on {kernelName} but the kernel could not be loaded."
-                                                                                          )
+                                                                            $"Header parser completed on {kernelName} but the kernel could not be loaded."
+                                                                           )
                                                                       )
                                               );
                         kernels.Add(kernelName, new CLKernel(instance, null, kernelName, parameter));

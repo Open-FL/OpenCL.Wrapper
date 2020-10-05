@@ -224,9 +224,9 @@ namespace OpenCL.Wrapper
                 objs[i] = System.Convert.ChangeType(
                                                     ConvertRange(
                                                                  (float) System.Convert.ChangeType(
-                                                                                                   objs[i],
-                                                                                                   typeof(float)
-                                                                                                  ),
+                                                                      objs[i],
+                                                                      typeof(float)
+                                                                     ),
                                                                  oldMax,
                                                                  newMax
                                                                 ),

@@ -232,14 +232,14 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
 
             MemoryBuffer mb = CreateEmpty<T>(
                                              instance,
-                                             (int)input.Size,
+                                             (int) input.Size,
                                              input.Flags,
                                              "CopyOf:" + input,
                                              true
                                             );
             k.SetBuffer(0, mb);
             k.SetBuffer(1, input);
-            Run(instance, k, (int)mb.Size);
+            Run(instance, k, (int) mb.Size);
             return mb;
         }
 
@@ -299,7 +299,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         {
             MemoryBuffer buffer = buf;
 
-            T[] data = instance.commandQueue.EnqueueReadBuffer<T>(buffer, (int)buffer.Size);
+            T[] data = instance.commandQueue.EnqueueReadBuffer<T>(buffer, (int) buffer.Size);
 
 
             WriteRandom(data, enabledChannels, rnd, uniform);
@@ -403,11 +403,15 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         /// <param name="size">The size of the buffer(Total size in bytes: size*sizeof(T)</param>
         /// <param name="flags">The memory flags for the buffer creation</param>
         /// <returns></returns>
-        public static MemoryBuffer CreateEmpty<T>(CLAPI instance, int size, MemoryFlag flags, object handleIdentifier, bool optimize = false)
+        public static MemoryBuffer CreateEmpty<T>(
+            CLAPI instance, int size, MemoryFlag flags, object handleIdentifier, bool optimize = false)
             where T : struct
         {
             if (!optimize)
+            {
                 return CreateBuffer(instance, new byte[size], flags, handleIdentifier);
+            }
+
             return CreateEmptyOptimized<T>(instance, size, flags, handleIdentifier);
         }
 
@@ -422,7 +426,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         public static MemoryBuffer CreateBuffer<T>(CLAPI instance, T[] data, MemoryFlag flags, object handleIdentifier)
             where T : struct
         {
-            object[] arr = Array.ConvertAll(data, x => (object)x);
+            object[] arr = Array.ConvertAll(data, x => (object) x);
             return CreateBuffer(instance, arr, typeof(T), flags, handleIdentifier);
         }
 
@@ -511,7 +515,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
 
         public static void UpdateBitmap(CLAPI instance, Bitmap target, MemoryBuffer buffer)
         {
-            byte[] bs = ReadBuffer<byte>(instance, buffer, (int)buffer.Size);
+            byte[] bs = ReadBuffer<byte>(instance, buffer, (int) buffer.Size);
             UpdateBitmap(instance, target, bs);
         }
 

@@ -16,11 +16,11 @@ namespace OpenCL.Wrapper.Exceptions
         /// <param name="filePath">The File that was not found</param>
         /// <param name="inner">Inner exeption</param>
         public InvalidFilePathException(string filePath, Exception inner) : base(
-                                                                                 "The file " +
-                                                                                 filePath +
-                                                                                 " could not be found.",
-                                                                                 inner
-                                                                                )
+             "The file " +
+             filePath +
+             " could not be found.",
+             inner
+            )
         {
         }
 
