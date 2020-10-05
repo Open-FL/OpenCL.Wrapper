@@ -62,7 +62,7 @@ __kernel void copy(__global uchar* destination, __global uchar* source)
         /// <summary>
         ///     Private constructor
         /// </summary>
-        private CLAPI() : base(OpenCLDebugConfig.Settings)
+        private CLAPI() : base(OpenCLDebugConfig.Settings, "API")
         {
             InitializeOpenCl();
         }
