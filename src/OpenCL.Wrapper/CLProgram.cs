@@ -173,6 +173,7 @@ namespace OpenCL.Wrapper
             }
 
             program = new CLProgram(filePath, kernels, source);
+            program.ClProgramHandle = prgHandle;
             return result;
         }
 
