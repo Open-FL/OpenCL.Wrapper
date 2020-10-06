@@ -22,32 +22,20 @@ namespace OpenCL.Wrapper
         /// </summary>
         private readonly string filePath;
 
+        public readonly string Source;
 
-        ///// <summary>
-        ///// Public Constructor
-        ///// </summary>
-        ///// <param name="instance">CLAPI Instance for the current thread</param>
-        ///// <param name="filePath">The FilePath where the source is located</param>
-        ///// <param name="genType">The Gen Type used</param>
-        //public CLProgram(CLAPI instance, string filePath)
-        //{
-        //    this.filePath = filePath;
-
-        //    ContainedKernels = new Dictionary<string, CLKernel>();
-
-        //    Initialize(instance);
-        //}
-
-        private CLProgram(string filePath, Dictionary<string, CLKernel> kernels)
+        private CLProgram(string filePath, Dictionary<string, CLKernel> kernels, string source)
         {
             this.filePath = filePath;
             ContainedKernels = kernels;
+            Source = source;
         }
 
         private CLProgram(Dictionary<string, CLKernel> kernels, string source)
         {
             filePath = "";
             ContainedKernels = kernels;
+            Source = source;
         }
 
         /// <summary>
@@ -118,7 +106,7 @@ namespace OpenCL.Wrapper
             string[] kernelNames = FindKernelNames(source);
             if (kernelNames.Length == 0)
             {
-                program = new CLProgram(filePath, new Dictionary<string, CLKernel>());
+                program = new CLProgram(filePath, new Dictionary<string, CLKernel>(), source);
                 return result;
             }
 
@@ -184,7 +172,7 @@ namespace OpenCL.Wrapper
                 }
             }
 
-            program = new CLProgram(filePath, kernels);
+            program = new CLProgram(filePath, kernels, source);
             return result;
         }
 
