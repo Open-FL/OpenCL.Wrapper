@@ -20,20 +20,20 @@ namespace OpenCL.Wrapper
         /// <summary>
         ///     The filepath of the program source
         /// </summary>
-        private readonly string filePath;
+        public readonly string FilePath;
 
         public readonly string Source;
 
         private CLProgram(string filePath, Dictionary<string, CLKernel> kernels, string source)
         {
-            this.filePath = filePath;
+            FilePath = filePath;
             ContainedKernels = kernels;
             Source = source;
         }
 
         private CLProgram(Dictionary<string, CLKernel> kernels, string source)
         {
-            filePath = "";
+            FilePath = "";
             ContainedKernels = kernels;
             Source = source;
         }
