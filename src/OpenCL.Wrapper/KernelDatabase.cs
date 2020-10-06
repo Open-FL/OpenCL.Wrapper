@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using OpenCL.Wrapper.ExtPP.API;
 using OpenCL.Wrapper.TypeEnums;
@@ -112,6 +113,11 @@ namespace OpenCL.Wrapper
             }
         }
 
+
+        public CLProgram GetProgram(CLKernel containingKernel)
+        {
+            return loadedPrograms.First(x => x.ContainedKernels.ContainsValue(containingKernel));
+        }
 
         public CLProgram AddProgram(
             CLAPI instance, string source, string filePath, bool throwEx, out CLProgramBuildResult ex)
