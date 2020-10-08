@@ -39,7 +39,8 @@ namespace OpenCL.Wrapper
         /// <param name="genDataVectorType">The DataVectorTypes used to compile the FL Database</param>
         public KernelDatabase(CLAPI instance, string folderName, DataVectorTypes genDataVectorType) : base(
              OpenCLDebugConfig
-                 .Settings, "DB"
+                 .Settings,
+             "DB"
             )
         {
             GenDataType = KernelParameter.GetDataString(genDataVectorType);
@@ -60,7 +61,8 @@ namespace OpenCL.Wrapper
         /// <param name="folderName">Folder name where the kernels are located</param>
         /// <param name="genDataVectorType">The DataVectorTypes used to compile the FL Database</param>
         public KernelDatabase(DataVectorTypes genDataVectorType) : base(
-                                                                        OpenCLDebugConfig.Settings, "DB"
+                                                                        OpenCLDebugConfig.Settings,
+                                                                        "DB"
                                                                        )
         {
             GenDataType = KernelParameter.GetDataString(genDataVectorType);
