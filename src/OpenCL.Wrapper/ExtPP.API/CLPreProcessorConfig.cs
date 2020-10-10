@@ -1,10 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-using Utility.ExtPP.API.Configuration;
-using Utility.ExtPP.Base.Plugins;
-using Utility.ExtPP.Plugins;
-
 namespace OpenCL.Wrapper.ExtPP.API
 {
     /// <summary>

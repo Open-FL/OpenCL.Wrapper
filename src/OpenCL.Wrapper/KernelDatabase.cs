@@ -6,10 +6,6 @@ using System.Linq;
 using OpenCL.Wrapper.ExtPP.API;
 using OpenCL.Wrapper.TypeEnums;
 
-using Utility.ADL;
-using Utility.ExtPP.API;
-using Utility.IO.Callbacks;
-
 namespace OpenCL.Wrapper
 {
     /// <summary>

@@ -1,7 +1,4 @@
-﻿using OpenCL.NET.DataTypes;
-using OpenCL.NET.Memory;
-
-namespace OpenCL.Wrapper.CLFonts
+﻿namespace OpenCL.Wrapper.CLFonts
 {
     public class CLChar
     {

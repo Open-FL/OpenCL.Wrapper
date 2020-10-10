@@ -1,7 +1,5 @@
 ﻿using System;
 
-using Utility.Exceptions;
-
 namespace OpenCL.Wrapper.Exceptions
 {
     /// <summary>

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Utility.FastString;
-
 namespace OpenCL.Wrapper
 {
     public struct CLProgramBuildResult

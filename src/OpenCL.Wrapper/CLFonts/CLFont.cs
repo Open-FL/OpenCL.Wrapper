@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-using OpenCL.NET.Memory;
-
 namespace OpenCL.Wrapper.CLFonts
 {
     public class CLFont
