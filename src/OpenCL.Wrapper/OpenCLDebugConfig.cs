@@ -1,4 +1,7 @@
-﻿namespace OpenCL.Wrapper
+﻿using Utility.ADL;
+using Utility.ADL.Configs;
+
+namespace OpenCL.Wrapper
 {
     public static class OpenCLDebugConfig
     {

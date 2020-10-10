@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+using Utility.Exceptions;
+using Utility.FastString;
+
 namespace OpenCL.Wrapper
 {
     public class CLBuildException : Byt3Exception

@@ -5,6 +5,18 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 
+using OpenCL.NET;
+using OpenCL.NET.CommandQueues;
+using OpenCL.NET.Contexts;
+using OpenCL.NET.DataTypes;
+using OpenCL.NET.Devices;
+using OpenCL.NET.Kernels;
+using OpenCL.NET.Memory;
+using OpenCL.NET.Platforms;
+using OpenCL.NET.Programs;
+
+using Utility.ADL;
+
 namespace OpenCL.Wrapper
 {
     /// <summary>

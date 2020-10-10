@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using OpenCL.NET;
+using OpenCL.NET.Kernels;
+using OpenCL.NET.Programs;
 using OpenCL.Wrapper.TypeEnums;
+
+using Utility.ExtPP.API;
 
 namespace OpenCL.Wrapper
 {

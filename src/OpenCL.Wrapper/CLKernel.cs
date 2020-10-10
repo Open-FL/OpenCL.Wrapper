@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using OpenCL.NET.CommandQueues;
+using OpenCL.NET.DataTypes;
+using OpenCL.NET.Kernels;
+using OpenCL.NET.Memory;
+
 namespace OpenCL.Wrapper
 {
     /// <summary>
